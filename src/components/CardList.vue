@@ -50,7 +50,7 @@
       </template>
     </Toolbar>
     <div class="list">
-      <Card v-for="card in filterCards" :key="card.id" :data="card" />
+      <Card v-for="card in filterCards" :key="card.id" :data="card" :showPoint="true" :showStory="true" />
     </div>
   </div>
 </template>

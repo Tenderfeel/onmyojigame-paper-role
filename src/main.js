@@ -16,6 +16,7 @@ import Badge from "primevue/badge";
 import Tag from "primevue/tag";
 import DataView from "primevue/dataview";
 import Dropdown from "primevue/dropdown";
+import Sidebar from "primevue/sidebar";
 
 const app = createApp(App);
 
@@ -29,4 +30,5 @@ app.component("Badge", Badge);
 app.component("Tag", Tag);
 app.component("DataView", DataView);
 app.component("Dropdown", Dropdown);
+app.component("Sidebar", Sidebar);
 app.mount("#app");

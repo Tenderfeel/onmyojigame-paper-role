@@ -2,6 +2,11 @@
   <div>
     <CardList />
     <StoryList />
+    <Button icon="pi pi-question-circle" @click="visibleInfo = true" class="btn-info"  />
+    <Sidebar v-model:visible="visibleInfo" :baseZIndex="1000" position="right">
+        <h1>陰陽紙転ツール</h1>
+        <p>カードの下部にある数字<br>右側：関連物語数<br>左側：ポイント</p>
+    </Sidebar>
   </div>
 </template>
 
@@ -21,8 +26,11 @@ export default {
   setup() {
     // カードリスト
     const cards = reactive(
+      // だるまは弾く
       CardsData.filter((card) => card.type !== "special").map((card) => {
         card.selected = false;
+        const stories = StoriesData.filter(story => story.cards.includes(card.name))
+        card.storyCount = stories.length
         return card;
       })
     );
@@ -42,7 +50,7 @@ export default {
       story.score = story.point;
       // カード全選択でtrue
       story.complete = false;
-      return story;
+      return reactive(story);
     });
 
     const stories = computed(() => {
@@ -65,6 +73,7 @@ export default {
     // 物語リスト
     provide("stories", stories);
 
+    // 完成物語数
     provide("completeStory", completeStory);
 
     // 選択中カード枚数
@@ -85,10 +94,16 @@ export default {
 
     provide("resetSelectCards", resetSelectCards);
   },
+
+  data() {
+    return {
+      visibleInfo: false
+    }
+  }
 };
 </script>
 
-<style>
+<style> 
 body {
   margin: 0;
   height: 100%;
@@ -100,5 +115,17 @@ body {
   color: var(--text-color);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.btn-info {
+  position: fixed !important;
+  right: 0;
+  bottom: 5vw;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+h1 {
+  font-size: 1.5rem;
 }
 </style>
