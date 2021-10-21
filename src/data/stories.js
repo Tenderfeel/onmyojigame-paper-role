@@ -110,7 +110,7 @@ export default [
     name: "大江山の変III",
     point: 4,
     text: "俺は世界最強の刀になってみせる",
-    cards: ["鬼切", "天剣刀心鬼切"]
+    cards: ["鬼切", "天剣刃心鬼切"]
   },
   {
     id: 17,
