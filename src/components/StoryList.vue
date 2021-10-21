@@ -49,7 +49,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .story-list {
   padding: 1rem;
 }

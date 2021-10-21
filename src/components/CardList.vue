@@ -105,7 +105,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 .card-list {
   padding: 0.5rem;
 }

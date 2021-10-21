@@ -48,7 +48,7 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
+<style scoped>
 .card {
   border: solid 2px black;
   background-repeat: no-repeat;
@@ -57,31 +57,31 @@ export default {
   width: 50px;
   overflow: hidden;
   cursor: pointer;
+}
 
-  &.selected {
-    &[data-type="blue"] {
-      border-color: var(--cyan-300);
-    }
-    &[data-type="red"] {
-      border-color: var(--pink-200);
-    }
-    &[data-type="yellow"] {
-      border-color: var(--yellow-300);
-    }
-    &[data-type="green"] {
-      border-color: var(--green-300);
-    }
-  }
 
-  &::before {
-    display: block;
-    content: "";
-    padding-top: 164.61%;
-  }
 
   span {
     position: absolute;
     visibility: hidden;
   }
-}
+  .card::before {
+    display: block;
+    content: "";
+    padding-top: 164.61%;
+  }
+
+  .card.selected[data-type="blue"] {
+    border-color: var(--cyan-300);
+  }
+  .card.selected[data-type="red"] {
+    border-color: var(--pink-200);
+  }
+  .card.selected[data-type="yellow"] {
+    border-color: var(--yellow-300);
+  }
+  .card.selected[data-type="green"] {
+    border-color: var(--green-300);
+  }
+
 </style>

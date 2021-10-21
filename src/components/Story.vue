@@ -29,7 +29,7 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped>
 .story {
   overflow: hidden;
 }
@@ -39,10 +39,10 @@ export default {
 }
 .story-name {
   display: inline-block;
+}
 
-  &.complete {
-    color: var(--purple-200);
-  }
+.story-name.complete {
+  color: var(--purple-200);
 }
 .story-point {
   display: inline-block;
