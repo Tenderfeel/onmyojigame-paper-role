@@ -41,6 +41,13 @@
 
         <Chip label="Action" class="p-mr-2 p-mb-2">{{ selectCount }}枚 </Chip>
       </template>
+      <template #right>
+        <Button
+          class="p-button-secondary"
+          icon="pi pi-trash"
+          @click="resetSelectCards"
+        />
+      </template>
     </Toolbar>
     <div class="list">
       <Card v-for="card in filterCards" :key="card.id" :data="card" />
@@ -59,6 +66,7 @@ export default {
   setup() {
     const cards = inject("cards");
     const selectCount = inject("selectCount");
+    const resetSelectCards = inject("resetSelectCards")
     const type = reactive(["blue"]);
 
     const filterCards = computed(() =>
@@ -88,6 +96,7 @@ export default {
       typeCount,
       selectCount,
       filterCards,
+      resetSelectCards
     };
   },
   components: { Card },
@@ -100,7 +109,7 @@ export default {
       } else {
         this.type.push(type);
       }
-    },
+    }
   },
 };
 </script>

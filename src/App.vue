@@ -77,6 +77,13 @@ export default {
       selectCount.value = cards.filter((card) => card.selected).length;
     };
     provide("toggleSelectCard", toggleSelectCard);
+
+    // 選択されたカードの初期化
+    const resetSelectCards = () => {
+      cards.forEach(card => card.selected = false)
+    }
+
+    provide("resetSelectCards", resetSelectCards);
   },
 };
 </script>
