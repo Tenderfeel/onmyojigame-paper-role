@@ -6,6 +6,8 @@
     <Sidebar v-model:visible="visibleInfo" :baseZIndex="1000" position="right">
         <h1>陰陽紙転ツール</h1>
         <p>カードの下部にある数字<br>右側：関連物語数<br>左側：ポイント</p>
+        <p>関連物語数が多いほどコンボが発生しやすくなります。</p>
+        <p>物語は全部で100あります。</p>
     </Sidebar>
   </div>
 </template>
