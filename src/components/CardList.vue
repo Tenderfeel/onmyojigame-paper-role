@@ -6,7 +6,7 @@
           label="青"
           class="p-button-info p-mr-2"
           :class="{
-            'p-button-outlined': !type.includes('blue'),
+            'p-button-outlined': type !== 'blue',
           }"
           :badge="typeCount.blue"
           @click="toggleButton('blue')"
@@ -15,7 +15,7 @@
           label="赤"
           class="p-button-danger p-mr-2"
           :class="{
-            'p-button-outlined': !type.includes('red'),
+            'p-button-outlined': type !== 'red',
           }"
           :badge="typeCount.red"
           @click="toggleButton('red')"
@@ -24,7 +24,7 @@
           label="黄"
           class="p-button-warning p-mr-2"
           :class="{
-            'p-button-outlined': !type.includes('yellow'),
+            'p-button-outlined': type !== 'yellow',
           }"
           :badge="typeCount.yellow"
           @click="toggleButton('yellow')"
@@ -33,7 +33,7 @@
           label="緑"
           class="p-button-success p-mr-2"
           :class="{
-            'p-button-outlined': !type.includes('green'),
+            'p-button-outlined': type !== 'green',
           }"
           :badge="typeCount.green"
           @click="toggleButton('green')"
@@ -62,7 +62,7 @@
 /**
  * カードリスト
  */
-import { reactive, inject, computed } from "vue";
+import { ref, inject, computed } from "vue";
 import Card from "./Card.vue";
 
 export default {
@@ -71,11 +71,11 @@ export default {
     const selectCount = inject("selectCount");
     const resetSelectCards = inject("resetSelectCards")
     const showSkinCard = inject('showSkinCard')
-    const type = reactive(["blue"]);
+    const type = ref("blue");
 
     const filterCards = computed(() =>
       cards.filter((card) => {
-        return type.includes(card.type);
+        return type.value === card.type;
       })
     );
 
@@ -108,12 +108,7 @@ export default {
 
   methods: {
     toggleButton(type) {
-      if (this.type.includes(type)) {
-        const index = this.type.findIndex((t) => t === type);
-        this.type.splice(index, 1);
-      } else {
-        this.type.push(type);
-      }
+      this.type = type
     }
   },
 };
