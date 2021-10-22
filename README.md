@@ -1,24 +1,12 @@
-# t
+# 陰陽紙転ミニゲーム用ツール
 
-## Project setup
-```
-yarn install
-```
+ゲーム中は図鑑が見づらいなあと思って作ったツール。  
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+https://onmyojigame-paper-role.vercel.app/
 
-### Compiles and minifies for production
-```
-yarn build
-```
 
-### Lints and fixes files
-```
-yarn lint
-```
+## イベントについて
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+陰陽紙転の開催期間：10/20(水)メンテ後～10/31(日)23:59
+
+[不夜京イベント攻略まとめ（神ゲー）](https://kamigame.jp/%E9%99%B0%E9%99%BD%E5%B8%AB/page/179926091471795562.html)
