@@ -2,7 +2,8 @@
   <div>
     <CardList />
     <StoryList />
-    <Button icon="pi pi-question-circle" @click="visibleInfo = true" class="btn-info"  />
+    <Button icon="pi pi-question-circle" @click="visibleInfo = true" class="btn-info p-button-secondary"  />
+    <Button icon="pi pi-cog" @click="visibleConfig = true" class="btn-config p-button-secondary"  />
     <Sidebar v-model:visible="visibleInfo" :baseZIndex="1000" position="right">
         <h1>陰陽紙転ツール</h1>
         <p>カードの下部にある数字<br>右側：関連物語数<br>左側：ポイント</p>
@@ -15,7 +16,7 @@
 </template>
 
 <script>
-import { provide, reactive, ref, computed } from "vue";
+import { provide, reactive, ref } from "vue";
 import CardsData from "./data/cards.js";
 import StoriesData from "./data/stories.js";
 
@@ -44,46 +45,6 @@ export default {
     const showSkinCard = ref(false)
     provide('showSkinCard', showSkinCard)
 
-    const mappedStories = StoriesData.map((story) => {
-      story.cardData = [];
-      story.cards.forEach((cardName) => {
-        const data = cards.find((card) => card.name === cardName);
-        if (data) {
-          story.cardData.push(data);
-        }
-      });
-      // 選択済みカード
-      story.selectedCards = 0;
-      // スコア
-      story.score = story.point;
-      // カード全選択でtrue
-      story.complete = false;
-      return reactive(story);
-    });
-
-    const stories = computed(() => {
-      mappedStories.forEach((story) => {
-        // 選択済みカード
-        story.selectedCards = story.cardData.reduce(
-          (acc, cur) => acc + cur.selected,
-          0
-        );
-        story.score = story.selectedCards + story.point;
-        story.complete = story.selectedCards === story.cards.length;
-      });
-      return mappedStories.filter((story) => story.selectedCards);
-    });
-
-    const completeStory = computed(() => {
-      return stories.value.reduce((acc, cur) => acc + cur.complete, 0);
-    });
-
-    // 物語リスト
-    provide("stories", stories);
-
-    // 完成物語数
-    provide("completeStory", completeStory);
-
     // 選択中カード枚数
     const selectCount = ref(0);
     provide("selectCount", selectCount);
@@ -99,13 +60,13 @@ export default {
     const resetSelectCards = () => {
       cards.forEach(card => card.selected = false)
     }
-
     provide("resetSelectCards", resetSelectCards);
   },
 
   data() {
     return {
-      visibleInfo: false
+      visibleInfo: false,
+      visibleConfig: false
     }
   }
 };
@@ -127,12 +88,20 @@ body {
 
 a {text-decoration: none;}
 
-.btn-info {
-  position: fixed !important;
+.btn-info,
+.btn-config {
   right: 0;
-  bottom: 5vw;
+  position: fixed !important;
   border-top-right-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
+}
+
+.btn-info {
+  bottom: 5vw;
+}
+
+.btn-config {
+  bottom: calc(5vw + 50px);
 }
 
 h1 {
