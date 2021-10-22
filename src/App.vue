@@ -8,6 +8,8 @@
         <p>カードの下部にある数字<br>右側：関連物語数<br>左側：ポイント</p>
         <p>関連物語数が多いほどコンボが発生しやすくなります。</p>
         <p>物語は全部で100あります。</p>
+        <p>珍しい札はスキンの絵柄です。ポイントは全て8ptです。</p>
+        <p><a href="https://twitter.com/vesperfeel" class="p-button p-component p-button-text" target="_blank" rel="external nofollow noopener">&copy; vesperfeel</a></p>
     </Sidebar>
   </div>
 </template>
@@ -37,6 +39,10 @@ export default {
       })
     );
     provide("cards", cards);
+
+    // 特殊カードの表示
+    const showSkinCard = ref(false)
+    provide('showSkinCard', showSkinCard)
 
     const mappedStories = StoriesData.map((story) => {
       story.cardData = [];
@@ -118,6 +124,8 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+a {text-decoration: none;}
 
 .btn-info {
   position: fixed !important;

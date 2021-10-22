@@ -39,7 +39,10 @@
           @click="toggleButton('green')"
         />
 
-        <Chip label="Action" class="p-mr-2 p-mb-2">{{ selectCount }}枚 </Chip>
+        <Chip label="Action" class="p-mr-2">{{ selectCount }}枚 </Chip>
+
+        <ToggleButton v-model="showSkinCard" onLabel="珍札" offLabel="珍札" onIcon="pi pi-eye" offIcon="pi pi-eye-slash" />
+
       </template>
       <template #right>
         <Button
@@ -67,6 +70,7 @@ export default {
     const cards = inject("cards");
     const selectCount = inject("selectCount");
     const resetSelectCards = inject("resetSelectCards")
+    const showSkinCard = inject('showSkinCard')
     const type = reactive(["blue"]);
 
     const filterCards = computed(() =>
@@ -96,7 +100,8 @@ export default {
       typeCount,
       selectCount,
       filterCards,
-      resetSelectCards
+      resetSelectCards,
+      showSkinCard
     };
   },
   components: { Card },

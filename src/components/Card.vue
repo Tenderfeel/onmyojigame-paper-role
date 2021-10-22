@@ -1,7 +1,7 @@
 <template>
   <div
     class="card"
-    :class="{ selected: data.selected }"
+    :class="{ selected: data.selected, skin: showSkinCard && data.skin }"
     :style="{ backgroundImage: img }"
     v-tooltip="info"
     @click="handleClick"
@@ -32,16 +32,28 @@ export default {
   },
   setup() {
     const toggleSelectCard = inject("toggleSelectCard");
+    const showSkinCard = inject('showSkinCard')
     return {
       toggleSelectCard,
+      showSkinCard
     };
   },
   computed: {
+    hasSkin() {
+      return this.showSkinCard && this.data.skin
+    },
     img() {
+      if (this.showSkinCard && this.data.skin) {
+        return `url(/assets/images/cards/${this.data.id}-2.png)`;
+      }
       return `url(/assets/images/cards/${this.data.id}.png)`;
     },
+    /**
+     * ポイント
+     * 珍しい札の場合は一律8pt
+     */
     point() {
-      return this.data.point + this.data.bonus;
+      return this.hasSkin ? 8 : this.data.point + this.data.bonus;
     },
     info() {
       return this.data.name;
@@ -64,6 +76,19 @@ export default {
   overflow: hidden;
   cursor: pointer;
   position: relative;
+}
+
+.card.skin[data-type="blue"] {
+  box-shadow: 0 0 3px var(--cyan-200)
+}
+.card.skin[data-type="red"] {
+  box-shadow: 0 0 3px var(--pink-200)
+}
+.card.skin[data-type="yellow"] {
+  box-shadow: 0 0 3px var(--yellow-200)
+}
+.card.skin[data-type="green"] {
+  box-shadow: 0 0 3px var(--green-200)
 }
 
 span {
