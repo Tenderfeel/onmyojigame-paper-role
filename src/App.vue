@@ -7,7 +7,7 @@
         <h1>陰陽紙転ツール</h1>
         <p>カードの下部にある数字<br>右側：関連物語数<br>左側：ポイント</p>
         <p>関連物語数が多いほどコンボが発生しやすくなります。</p>
-        <p>物語は全部で100あります。</p>
+        <p>物語は全部で99あります。<br>スイッチのON/OFFはブラウザに記憶されます。</p>
         <p>珍しい札はスキンの絵柄です。ポイントは全て8ptです。</p>
         <p><a href="https://twitter.com/vesperfeel" class="p-button p-component p-button-text" target="_blank" rel="external nofollow noopener">&copy; vesperfeel</a></p>
     </Sidebar>
