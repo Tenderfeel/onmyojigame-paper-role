@@ -11,7 +11,7 @@
       <template #header>
         <div class="p-grid p-nogutter p-ai-center">
           <div class="p-col">
-            <div class="p-mr-2">物語</div>
+            <span class="p-d-inline-block p-mr-2">物語</span>
             <Badge v-if="completeStory">{{ completeStory }}</Badge>
           </div>
           <div class="p-col-fixed">
