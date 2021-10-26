@@ -24,7 +24,12 @@
       </template>
 
       <template #list="slotProps">
-        <Story class="p-col-12" :data="slotProps.data" />
+        <div class="p-col-12 p-grid p-nogutter">
+          <Story class="p-col" :data="slotProps.data" />
+          <div class="p-col-fixed p-d-flex p-ai-center p-p-1">
+            <InputSwitch v-model="slotProps.data.open" @change="handleChange(slotProps.data)" />
+          </div>
+        </div>
       </template>
     </DataView>
   </div>
@@ -57,6 +62,8 @@ export default {
       story.score = story.point;
       // カード全選択でtrue
       story.complete = false;
+      // 開放済み
+      story.open = localStorage.getItem(`story.open.${story.id}`) === 'true'
       return reactive(story);
     });
 
@@ -120,6 +127,9 @@ export default {
         this.sortField = value
         this.sortKey = sortValue
       }
+    },
+    handleChange(story) {
+      localStorage.setItem(`story.open.${story.id}`, story.open)
     }
   }
 };
