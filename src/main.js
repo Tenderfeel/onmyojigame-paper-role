@@ -18,7 +18,7 @@ import DataView from "primevue/dataview";
 import Dropdown from "primevue/dropdown";
 import Sidebar from "primevue/sidebar";
 import ToggleButton from 'primevue/togglebutton';
-
+import InputSwitch from 'primevue/inputswitch'
 
 const app = createApp(App);
 
@@ -34,4 +34,5 @@ app.component("DataView", DataView);
 app.component("Dropdown", Dropdown);
 app.component("Sidebar", Sidebar);
 app.component("ToggleButton", ToggleButton);
+app.component("InputSwitch", InputSwitch);
 app.mount("#app");

@@ -3,7 +3,6 @@
     <CardList />
     <StoryList />
     <Button icon="pi pi-question-circle" @click="visibleInfo = true" class="btn-info p-button-secondary"  />
-    <Button icon="pi pi-cog" @click="visibleConfig = true" class="btn-config p-button-secondary"  />
     <Sidebar v-model:visible="visibleInfo" :baseZIndex="1000" position="right">
         <h1>陰陽紙転ツール</h1>
         <p>カードの下部にある数字<br>右側：関連物語数<br>左側：ポイント</p>

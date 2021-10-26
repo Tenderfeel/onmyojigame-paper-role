@@ -15,6 +15,8 @@
             <Badge v-if="completeStory">{{ completeStory }}</Badge>
           </div>
           <div class="p-col-fixed">
+            <Dropdown class="p-mr-2" v-model="sortKey" :options="sortOptions" optionLabel="label" placeholder="Sort by Score" @change="onSortChange($event)" />
+            <!-- カード未選択も表示する -->
             <Button @click="showUnselected = !showUnselected" 
             :class="{'p-button-outlined': !showUnselected}" icon="pi pi-book"></Button>
           </div>
@@ -92,6 +94,34 @@ export default {
       showUnselected
     };
   },
+
+  data() {
+    return {
+      sortOptions: [
+        {label: 'Sort by ID', value: 'id'},
+        {label: 'Sort by Score', value: '!score'},
+        {label: 'Sort by Select', value: '!selectedCards'}
+      ]
+    }
+  },
+
+
+  methods: {
+    onSortChange(e) {
+      const value = e.value.value
+      const sortValue = e.value;
+
+      if (value.indexOf('!') === 0) {
+        this.sortOrder = -1
+        this.sortField = value.substring(1, value.length)
+        this.sortKey = sortValue
+      } else {
+        this.sortOrder = 1
+        this.sortField = value
+        this.sortKey = sortValue
+      }
+    }
+  }
 };
 </script>
 

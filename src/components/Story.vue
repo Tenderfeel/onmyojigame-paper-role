@@ -1,16 +1,22 @@
 <template>
-  <div class="story p-d-flex p-ai-start">
-    <div class="p-d-flex p-p-1" style="grid-column-gap: 0.2rem">
+  <div class="story p-grid p-nogutter">
+    <div class="p-col-12 p-md-3 p-d-flex p-ai-start p-p-1">
       <Card v-for="card in data.cardData" :key="card.id" :data="card" />
     </div>
-    <div class="p-p-2">
-      <p class="p-mt-0 p-mb-2">
-        <span class="story-name" :class="{ complete: data.complete }">{{
-          data.name
-        }}</span>
-        <span class="story-point p-ml-2">{{ data.point }}pt</span>
-      </p>
-      <p class="story-text p-m-0">{{ data.text }}</p>
+    <div class="p-col p-grid p-nogutter">
+      <div class="p-col p-p-2">
+        <p class="p-mt-0 p-mb-2">
+          <span class="story-name" :class="{ complete: data.complete }">{{
+            data.name
+          }}</span>
+          <span class="story-point p-ml-2">{{ data.point }}pt</span>
+        </p>
+        <p class="story-text p-m-0">{{ data.text }}{{data.checked}}</p>
+
+      </div>      
+      <div class="p-col-fixed p-d-flex p-ai-center p-p-1">
+        <InputSwitch v-model="checked" @change="handleChange" />
+      </div>
     </div>
   </div>
 </template>
@@ -23,9 +29,21 @@ export default {
   props: {
     data: {
       type: Object,
-      default: () => {},
-    },
+      default: null,
+    }
   },
+  data() {
+    return {
+      // 開放済み
+      checked: JSON.parse(localStorage.getItem(`story.open.${this.data.id}`) || 'false')
+    }
+  },
+  methods: {
+    handleChange() {
+      this.$emit('change', this.checked)
+      localStorage.setItem(`story.open.${this.data.id}`, this.checked)
+    }
+  }
 };
 </script>
 
