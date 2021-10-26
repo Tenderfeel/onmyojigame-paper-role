@@ -107,7 +107,8 @@ export default {
       sortOptions: [
         {label: 'Sort by ID', value: 'id'},
         {label: 'Sort by Score', value: '!score'},
-        {label: 'Sort by Select', value: '!selectedCards'}
+        {label: 'Sort by Select', value: '!selectedCards'},
+        {label: 'Sort by Open', value: 'open'}
       ]
     }
   },
